@@ -4,6 +4,7 @@
 z=sc.read_h5ad('/Users/alicjanowak/Downloads/7996cf65-6509-4da3-862e-a9d26e469afd.h5ad')
 
 #unique cell types list
+
 z.obs.cell_type.unique().tolist()
 6 cat:'L2/3-6 intratelencephalic projecting glutamatergic neuron',
  'amygdala excitatory neuron',
@@ -13,6 +14,7 @@ z.obs.cell_type.unique().tolist()
  'L5 extratelencephalic projecting glutamatergic cortical neuron'
 
 #filter by cell type
+
 ipgn= z[z.obs.cell_type == 'L2/3-6 intratelencephalic projecting glutamatergic neuron']
 axn = z[z.obs.cell_type == 'amygdala excitatory neuron']
 gcg=z[z.obs.cell_type == 'L6b glutamatergic cortical neuron']
@@ -22,6 +24,7 @@ epgcn=z[z.obs.cell_type == 'L5 extratelencephalic projecting glutamatergic corti
 
 
 #get data matrices from filtered subsets
+
 data_matrix_ipgn=ipgn.X
 data_matrix_axn=axn.X
 data_matrix_gcg=gcg.X
@@ -30,6 +33,7 @@ data_matrix_npgcn=npgcn.X
 data_matrix_epgcn=epgcn.X
 
 #Create a data frame from the matrix
+
 ipgn_df= pd.DataFrame(data_matrix_ipgn, index=ipgn.obs_names, columns=ipgn.var_names)
 axn_df= pd.DataFrame(data_matrix_axn, index=axn.obs_names, columns=axn.var_names)
 gcg_df= pd.DataFrame(data_matrix_gcg, index=gcg.obs_names, columns=gcg.var_names)
@@ -38,6 +42,7 @@ npgcn_df= pd.DataFrame(data_matrix_npgcn, index=npgcn.obs_names, columns=npgcn.v
 epgcn_df= pd.DataFrame(data_matrix_epgcn, index=epgcn.obs_names, columns=epgcn.var_names)
 
 #Get csv file
+
 eg.
 from IPython.display import FileLink
 csv_file_path= 'epgcn_matrix.csv'
