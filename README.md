@@ -31,19 +31,29 @@ epgcn=z[z.obs.cell_type == 'L5 extratelencephalic projecting glutamatergic corti
 #get data matrices from filtered subsets
 
 data_matrix_ipgn=ipgn.X
+
 data_matrix_axn=axn.X
+
 data_matrix_gcg=gcg.X
+
 data_matrix_cpgcn=cpgcn.X
+
 data_matrix_npgcn=npgcn.X
+
 data_matrix_epgcn=epgcn.X
 
 #Create a data frame from the matrix
 
 ipgn_df= pd.DataFrame(data_matrix_ipgn, index=ipgn.obs_names, columns=ipgn.var_names)
+
 axn_df= pd.DataFrame(data_matrix_axn, index=axn.obs_names, columns=axn.var_names)
+
 gcg_df= pd.DataFrame(data_matrix_gcg, index=gcg.obs_names, columns=gcg.var_names)
+
 cpgcn_df= pd.DataFrame(data_matrix_cpgcn, index=cpgcn.obs_names, columns=cpgcn.var_names)
+
 npgcn_df= pd.DataFrame(data_matrix_npgcn, index=npgcn.obs_names, columns=npgcn.var_names)
+
 epgcn_df= pd.DataFrame(data_matrix_epgcn, index=epgcn.obs_names, columns=epgcn.var_names)
 
 #Get csv file
