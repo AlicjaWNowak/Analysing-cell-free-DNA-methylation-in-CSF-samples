@@ -14,13 +14,18 @@ z.obs.cell_type.unique().tolist()
  'L5 extratelencephalic projecting glutamatergic cortical neuron'
 
 #filter by cell type
-
 ipgn= z[z.obs.cell_type == 'L2/3-6 intratelencephalic projecting glutamatergic neuron']
+
 axn = z[z.obs.cell_type == 'amygdala excitatory neuron']
+
 gcg=z[z.obs.cell_type == 'L6b glutamatergic cortical neuron']
+
 cpgcn=z[z.obs.cell_type == 'L6 corticothalamic-projecting glutamatergic cortical neuron']
+
 npgcn=z[z.obs.cell_type == 'near-projecting glutamatergic cortical neuron']
+
 epgcn=z[z.obs.cell_type == 'L5 extratelencephalic projecting glutamatergic cortical neuron']
+
 
 
 #get data matrices from filtered subsets
