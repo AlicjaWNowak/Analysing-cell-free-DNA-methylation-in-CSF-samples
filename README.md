@@ -152,7 +152,7 @@ print("Unmethylated genes saved to:", output_file)
 ### Filtering methylation data for CpGs
 library(dplyr)
 
-# Filter based on the third column that starts with "CG"
+#Filter based on the third column that starts with "CG"
 CpG_data <- meth_data %>%
   filter(substr(.[[4]], 1, 2) == "CG")
 
