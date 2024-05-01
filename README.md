@@ -166,9 +166,10 @@ devtools::install_github("aet21/EpiSCORE")
 #Install and load readr
 install.packages("readr")
 library(readr)
+library(dplyr)
 
 #Read tsv file
-meth_data<-readr::read_tsv()
+meth_data<-readr::read_tsv("file/path")
 
 #Filter for CpGs- save rows in which the values in 4th column begin with CG
 CpG_data<-meth_data %>%
