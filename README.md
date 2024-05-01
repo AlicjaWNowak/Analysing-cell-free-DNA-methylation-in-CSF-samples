@@ -1,5 +1,6 @@
 # Analysing-cell-free-DNA-methylation-in-CSF-samples
-### **Methylation by cell type** (Python)
+**Methylation by cell type** (Python)
+```
 #h.5ad file loaded into jupyter as z using scanpy
 z=sc.read_h5ad('/Users/alicjanowak/Downloads/7996cf65-6509-4da3-862e-a9d26e469afd.h5ad')
 
@@ -63,9 +64,9 @@ from IPython.display import FileLink
 csv_file_path= 'epgcn_matrix.csv'
 epgcn_df.to_csv(csv_file_path)
 display(FileLink(csv_file_path))
-
-### **Gene ID coordinates** (Python and R for BiomaRk)
-
+```
+ **Gene ID coordinates** (Python and R for BiomaRk)
+```
 #Get the variable names (gene IDs) into a vector
 variable_name=z.var_names
 
@@ -99,8 +100,9 @@ gene_info <- getBM(attributes = c("ensembl_gene_id", "chromosome_name", "start_p
                    filters = "ensembl_gene_id",
                    values = gene_ids,
                    mart = ensembl)
-                   
-### Checking for duplicates (R)
+```                   
+**Checking for duplicates** (R)
+```
 #Check for duplicates in ensembl_gene_id column
 duplicates <- gene_info[duplicated(gene_info$ensembl_gene_id), ]
 
@@ -110,10 +112,10 @@ if (nrow(duplicates) > 0) {
 } else {
   cat("No duplicates found in ensembl_gene_id column.\n")
 }
-
-### Finding unmethylated gene IDs per cell type (on eg of epgcn matrix/ threshold 0.5/0.7) (Python) 
+```
+**Finding unmethylated gene IDs per cell type (on eg of epgcn matrix/ threshold 0.5/0.7)** (Python) 
 import csv
-
+```
 def check_methylation(csv_file, threshold=0.3, output_file='unmethylated_genes_epgcn.txt'):
     unmethylated_genes = []
     
@@ -146,15 +148,16 @@ output_file = 'unmethylated_genes_epgcn.txt'
 unmethylated_genes = check_methylation(csv_file, output_file=output_file)
 print("Unmethylated genes:", unmethylated_genes)
 print("Unmethylated genes saved to:", output_file)
-
-### Geting the coordinates of genes as above in R
+```
+**Geting the coordinates of genes as above in R**
 
 ### Filtering methylation data for CpGs
+```
 library(dplyr)
 
 #Filter based on the third column that starts with "CG"
 CpG_data <- meth_data %>%
   filter(substr(.[[4]], 1, 2) == "CG")
-
+```
 
 
