@@ -1,18 +1,19 @@
-# Load genomicRanges
-library(GenomicRanges)
+#Load ggplot
+library(ggplot2)
 
-# Read BED file
-bed_data <- read.table("segments.bed", header = FALSE, stringsAsFactors = FALSE)
+#Import BED file
+segment_data <- read.table("FILE_Path", header =FALSE, stringsAsFactors = FALSE)
 
-# Rename columns for clarity
-colnames(bed_data) <- c("chromosome", "start", "end", "startCpG", "endCpG")
+#Name columns
+colnames(segment_data) <- c("chromosome", "strat", "end", "startCpG", "endCpG")
 
-# Calculate segment sizes
-bed_data$segment_size <- bed_data$end - bed_data$start
+#Calculate segment size
+segment_data$segments_size <- segment_data$end - segmnet_data$start
 
-# Create histogram
-hist(bed_data$segment_size, 
-     breaks = seq(0, max(bed_data$segment_size), by = 1000), 
-     main = "Distribution of Segment Sizes",
-     xlab = "Segment Size",
-     ylab = "Frequency")
+#Histogram
+ggplot(segment_data, aes(x = segment_size)) +
+  geom_histogram(binwidth=1000, fill= "skyblue", color="black") +
+  labs(title = "Distribution of Segment Sizes - ",
+       x= "Segmnet Size",
+       y= "Frequency") +
+  theme_minimal()
