@@ -1,0 +1,18 @@
+# Load genomicRanges
+library(GenomicRanges)
+
+# Read BED file
+bed_data <- read.table("segments.bed", header = FALSE, stringsAsFactors = FALSE)
+
+# Rename columns for clarity
+colnames(bed_data) <- c("chromosome", "start", "end", "startCpG", "endCpG")
+
+# Calculate segment sizes
+bed_data$segment_size <- bed_data$end - bed_data$start
+
+# Create histogram
+hist(bed_data$segment_size, 
+     breaks = seq(0, max(bed_data$segment_size), by = 1000), 
+     main = "Distribution of Segment Sizes",
+     xlab = "Segment Size",
+     ylab = "Frequency")
