@@ -15,5 +15,4 @@ ggplot(segment_data, aes(x = segment_size)) +
   geom_histogram(binwidth=1000, fill= "skyblue", color="black") +
   labs(title = "Distribution of Segment Sizes - ",
        x= "Segmnet Size",
-       y= "Frequency") +
-  theme_minimal()
+       y= "Frequency") 
