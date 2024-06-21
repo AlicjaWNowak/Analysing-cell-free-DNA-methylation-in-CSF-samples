@@ -1,0 +1,39 @@
+#Import packages
+import numpy as np
+import scipy as sc
+import pandas as pd
+from dask import dataframe as dd 
+#Import file
+dask_df = dd.read_csv(r="file" sep=r'\s+', header = 0)
+#Drop columns with no methylation data
+dask_df = dask_df.drop(columns=['chr', 'start', 'end', 'startCpG', 'endCpG'])
+#Drop NA
+dask_df = dask_df.dropna() 
+#Length as variable
+df_len = len(dask_df)
+#Calculate variance across columns in each row
+df_var = dask_df.var(axis = 1)
+#Select rows with largest variance up to 1% of the total number of rows
+select = df_var.nlargest(n=round(df_len/100)).compute()
+#Convert Dask DataFrame to Pandas DataFrame
+pd_df = dask_df.compute()
+#Delete dask dataframe 
+del(dask_df)
+#Select specific rows and convert to NumPy array
+np_df = pd_df.loc[ select.index,:].to_numpy()
+#Create Methlinkage for dendrogram and save as text
+MethLinkage = linkage(np.transpose(np_df), method='average', metric='cityblock', optimal_ordering=True)
+np.savetxt(fname='Linkage_brain.txt',X=MethLinkage, fmt='%s')
+#Import MethHead(head of the original input table a.k.a the labels)
+MethHead = pd.read_csv(r'/Users/alicjanowak/wgbs_tools/brain_dendrogram_head.tsv', sep=r'\s+', header = 0, index_col=False)
+#Drop columns with no methylation data
+MethHead= MethHead.drop(columns=['chr', 'start', 'end', 'startCpG', 'endCpG'])
+#Import thr MethLinkage
+LinkageAverageCityblock= pd.read_csv(r'/Users/alicjanowak/Linkage_brain.txt', sep=r'\s+', header = None, index_col=False)
+#Create dendrogram
+dn_LinkageAverageCityblock = dendrogram(LinkageAverageCityblock, labels = list(MethHead), color_threshold = 40000)
+#Import matplotlib
+import matplotlib.pyplot as plt
+#Rotate the labels
+dn_LinkageAverageCityblock = dendrogram(LinkageAverageCityblock, labels=list(MethHead), color_threshold=40000)
+plt.xticks(rotation=90)
