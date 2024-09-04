@@ -1,0 +1,14 @@
+## Loading the hg38 genome into wgbstools
+wgbstools innit_genome hg38
+
+## Segmentation 
+wgbstools segment --betas /path/to/data/*beta --min_cpg 3 --max_bp 2000 -o output.bed
+
+## Find markers (oligodendrocyte run)
+wgbstools find_markers --blocks_path /oligo/segments.bed.gz --groups_file /path/to/groups/file/csv --betas /path/ to/data/*beta --delta_quants .3 --pval 0.05
+
+## Conversion of single-cell data for variance analysis
+wgbstools beta_to_table segments.file.bed.gz --betas /path/to/data/*beta -c 5
+
+## Find markers (final)
+wgbstools find_markers --blocks_path /path/to/final_segments_.bed.gz --groups_file /path/to/Meth_groups_final.csv --betas /path/to//Final_Marker_files/*beta --delta_quants .3 --delta_means 0.01 --pval 0.05
