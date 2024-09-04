@@ -1,7 +1,7 @@
 #Read txt file from Gene analysis
-gene_association_oligo_brain <- read.delim("/Users/alicjanowak/Desktop/Masters/GREAT_oligo_brain_region_gene associations.txt", header = TRUE, sep = "\t", dec = ".")
-gene_association_oligo_loyfer <- read.delim ("/Users/alicjanowak/Desktop/Masters/great_oligo_loyfer_region_gene_associations.txt",  header = TRUE, sep = "\t", dec = ".")
-gene_association_oligo_switch <- read.delim("/Users/alicjanowak/Desktop/Masters/great_oligo_switch_region_gene_associations.txt", header = TRUE, sep = "\t", dec = ".")
+gene_association_oligo_brain <- read.delim("path/to/GREAT_oligo_brain_region_gene associations.txt", header = TRUE, sep = "\t", dec = ".")
+gene_association_oligo_loyfer <- read.delim ("/path/to/great_oligo_loyfer_region_gene_associations.txt",  header = TRUE, sep = "\t", dec = ".")
+gene_association_oligo_switch <- read.delim("path/to//great_oligo_switch_region_gene_associations.txt", header = TRUE, sep = "\t", dec = ".")
 
 #remove the numbers in parenthesis
 remove_numbers_in_parentheses <- function(gene) {
